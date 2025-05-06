@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Book a Session with {{ tutor.user.username }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Date:</label><input type="date" name="date" class="form-control"><br>
+    <label>Time:</label><input type="time" name="time" class="form-control"><br>
+    <label>Topic:</label><input type="text" name="topic" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Book</button>
+</form>
+{% endblock %}

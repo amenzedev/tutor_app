@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+
+# Environment
+.env
+venv/
+env/
+ENV/
+.venv/
+.idea/
+.vscode/
+*.swp
+
+# MacOS
+.DS_Store
+
+# Node (if you add npm tools later)
+node_modules/
+
+# Test coverage
+htmlcov/
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+.cache/
+
+# Migrations (optional, keep if tracking them in Git)
+**/migrations/__pycache__/
+**/migrations/*.pyc
+**/migrations/*.pyo
+

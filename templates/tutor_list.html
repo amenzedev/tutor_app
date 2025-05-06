@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Available Tutors</h2>
+<ul>
+    {% for tutor in tutors %}
+        <li>{{ tutor.user.username }} - {{ tutor.subjects }} - ${{ tutor.hourly_rate }}
+        <a href="/bookings/book/{{ tutor.id }}/">Book</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
