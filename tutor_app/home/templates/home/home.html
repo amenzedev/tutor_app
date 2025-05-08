@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-body text-center">
+        <h1 class="display-4">Welcome to Tutor App</h1>
+        <p class="lead">Find your perfect tutor today!</p>
+        <div class="mt-4">
+            {% if user.is_authenticated %}
+                <p>Welcome back, {{ user.username }}!</p>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Get Started</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
