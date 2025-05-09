@@ -1,0 +1,26 @@
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img src="https://via.placeholder.com/150" 
+                     class="rounded-circle mb-3" 
+                     alt="Profile picture">
+                <h4>{{ profile.user.username }}</h4>
+                {% if profile.user.is_tutor %}
+                    <h5 class="text-muted">${{ profile.hourly_rate }}/hour</h5>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <h3 class="mb-3">About Me</h3>
+                <p class="lead">{{ profile.bio|default:"No bio yet" }}</p>
+                
+                {% if profile.user.is_tutor %}
+                    <div class="mt-4">
+                        <h5>Subjects</h5>
+                        <p>{{ profile.subjects }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
