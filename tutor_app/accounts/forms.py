@@ -14,7 +14,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'user_type', 'password1', 'password2')
+        fields = ('first_name','last_name', 'username', 'email', 'user_type', 'password1', 'password2')
 
 class StudentProfileForm(forms.ModelForm):
     class Meta:

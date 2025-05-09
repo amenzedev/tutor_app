@@ -8,6 +8,8 @@ class CustomUser(AbstractUser):
         ('student', 'Student'),
         ('tutor', 'Tutor'),
     )
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     user_type = models.CharField(max_length=10, choices=USER_TYPES, default='student')
     
     def __str__(self):

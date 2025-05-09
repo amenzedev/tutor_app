@@ -40,7 +40,9 @@
                     <div class="badge bg-primary">{{ tutor.subjects }}</div>
                 </div>
                 <div class="card-footer bg-transparent">
-                    <a href="#" class="btn btn-outline-primary w-100">View Profile</a>
+                    <a href="{% url 'tutor_detail' tutor.user.username %}" class="btn btn-outline-primary w-100">
+                        View Profile
+                    </a>
                 </div>
             </div>
         </div>
