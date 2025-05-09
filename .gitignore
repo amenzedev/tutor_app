@@ -48,4 +48,16 @@ htmlcov/
 **/migrations/__pycache__/
 **/migrations/*.pyc
 **/migrations/*.pyo
+**/migrations/*.py
+
+*/*/migrations/__pycache__/
+*/*/migrations/*.pyc
+*/*/migrations/*.pyo
+*/*/migrations/*.py
+
+*/*/*/migrations/__pycache__/
+*/*/*/migrations/*.pyc
+*/*/*/migrations/*.pyo
+*/*/*/migrations/*.py
+
 
