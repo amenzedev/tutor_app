@@ -21,7 +21,8 @@ class StudentProfileForm(forms.ModelForm):
         model = StudentProfile
         fields = ['bio', 'phone']
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 4}),
+            'bio': forms.Textarea(attrs={'rows': 3}),
+            'phone': forms.TextInput(attrs={'placeholder': '+1 234 567 8900'})
         }
 
 class TutorProfileForm(forms.ModelForm):
@@ -29,6 +30,7 @@ class TutorProfileForm(forms.ModelForm):
         model = TutorProfile
         fields = ['bio', 'subjects', 'hourly_rate']
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 4}),
-            'subjects': forms.TextInput(attrs={'placeholder': 'Math, Science, English...'}),
+            'bio': forms.Textarea(attrs={'rows': 3}),
+            'subjects': forms.TextInput(attrs={'placeholder': 'Math, Science, English'}),
+            'hourly_rate': forms.NumberInput(attrs={'step': '0.01'})
         }

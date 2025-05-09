@@ -1,23 +1,30 @@
-<div class="card shadow mb-4">
+<div class="card mb-4 shadow-sm">
     <div class="card-body">
         <div class="row">
-            <div class="col-md-3 text-center">
-                <img src="https://via.placeholder.com/150" 
+            <div class="col-md-4 text-center">
+                <!-- <img src="https://via.placeholder.com/150" 
                      class="rounded-circle mb-3" 
-                     alt="Profile picture">
-                <h4>{{ profile.user.username }}</h4>
-                {% if profile.user.is_tutor %}
-                    <h5 class="text-muted">${{ profile.hourly_rate }}/hour</h5>
-                {% endif %}
+                     alt="Profile picture"> -->
+                <!-- <h4>{{ request.user.username }}</h4> -->
+                <!-- {% if request.user.user_type == "tutor" %}
+                    <h5 class="text-muted">${{ request.user.tutor_profile.hourly_rate }}/hour</h5>
+                {% endif %} -->
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <h3 class="mb-3">About Me</h3>
-                <p class="lead">{{ profile.bio|default:"No bio yet" }}</p>
-                
-                {% if profile.user.is_tutor %}
+
+                <p class="text-muted">Username: {{ request.user.username|default:"Not provided" }}</p>
+                <p class="text-muted">Email: {{ request.user.email|default:"Not provided" }}</p>
+                {% if request.user.user_type == "student" %}
+                    <p class="lead">{{ request.user.student_profile.bio|default:"No bio yet" }}</p>
+                    <p class="text-muted">Phone: {{ request.user.student_profile.phone|default:"Not provided" }}</p>
+                {% elif request.user.user_type == "tutor" %}
+                    <p class="lead">{{ request.user.tutor_profile.hourly_rate|default:"0" }}</p>
+                    <p class="lead">{{ request.user.tutor_profile.bio|default:"No bio yet" }}</p>
+                    <p class="text-muted">Phone: {{ request.user.student_profile.phone|default:"Not provided" }}</p>
                     <div class="mt-4">
                         <h5>Subjects</h5>
-                        <p>{{ profile.subjects }}</p>
+                        <p>{{ request.user.tutor_profile.subjects }}</p>
                     </div>
                 {% endif %}
             </div>

@@ -26,7 +26,7 @@ class TutorProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='tutor_profile')
     bio = models.TextField(max_length=500, blank=True)
     subjects = models.CharField(max_length=200)
-    hourly_rate = models.DecimalField(max_digits=6, decimal_places=2)
+    hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, default=0.00 )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

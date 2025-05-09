@@ -12,7 +12,10 @@ def register(request):
             user = form.save()
             login(request, user)
             messages.success(request, 'Registration successful! Please complete your profile.')
-            return redirect('profile')
+            if(user.user_type == "student"):
+                return redirect('student_profile')
+            else:
+                return redirect('tutor_profile')
         else:
             messages.error(request, 'Registration failed. Please correct the errors below.')
     else:
@@ -43,30 +46,56 @@ def user_logout(request):
 
 
 @login_required
-def profile_view(request):
-    user = request.user
-    profile_instance = None
-    form_class = None
-    
-    if user.user_type == 'student':
-        profile_instance = user.student_profile
-        form_class = StudentProfileForm
-    elif user.user_type == 'tutor':
-        profile_instance = user.tutor_profile
-        form_class = TutorProfileForm
-        return redirect('home')
-
+def student_profile(request):
+    profile = request.user.student_profile
     if request.method == 'POST':
-        form = form_class(request.POST, instance=profile_instance)
+        form = StudentProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully!')
-            return redirect('profile')
+            return redirect('student_profile')
     else:
-        form = form_class(instance=profile_instance)
+        form = StudentProfileForm(instance=profile)
+    return render(request, 'accounts/student_profile.html', {'form': form})
 
-    # return render(request, f'accounts/{"student" if request.user.user_type == 'student' else "tutor"}_profile.html', {
-    #     'form': form,
-    #     'profile': profile_instance
-    # })
-    return redirect('home')
+
+@login_required
+def tutor_profile(request):
+    profile = request.user.tutor_profile
+    if request.method == 'POST':
+        form = TutorProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('tutor_profile')
+    else:
+        form = TutorProfileForm(instance=profile)
+    return render(request, 'accounts/tutor_profile.html', {'form': form})
+
+
+# @login_required
+# def profile_view(request):
+#     user = request.user
+#     profile_instance = None
+#     form_class = None
+    
+#     if user.user_type == 'student':
+#         profile_instance = user.student_profile
+#         form_class = StudentProfileForm
+#     elif user.user_type == 'tutor':
+#         profile_instance = user.tutor_profile
+#         form_class = TutorProfileForm
+#         return redirect('home')
+
+#     if request.method == 'POST':
+#         form = form_class(request.POST, instance=profile_instance)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Profile updated successfully!')
+#             return redirect('profile')
+#     else:
+#         form = form_class(instance=profile_instance)
+
+#     # return render(request, f'accounts/{"student" if request.user.user_type == 'student' else "tutor"}_profile.html', {
+#     #     'form': form,
+#     #     'profile': profile_instance
+#     # })
+#     return redirect('home')
