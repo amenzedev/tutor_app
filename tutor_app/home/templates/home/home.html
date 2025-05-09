@@ -1,17 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card shadow">
-    <div class="card-body text-center">
-        <h1 class="display-4">Welcome to Tutor App</h1>
-        <p class="lead">Find your perfect tutor today!</p>
-        <div class="mt-4">
-            {% if user.is_authenticated %}
-                <p>Welcome back, {{ user.username }}!</p>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Get Started</a>
-            {% endif %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 mb-4">Learn from Expert Tutors</h1>
+                <p class="lead mb-4">Connect with qualified tutors in various subjects and achieve your learning goals.</p>
+                <a href="{% url 'tutor_list' %}" class="btn btn-light btn-lg">Browse Tutors</a>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/static/images/hero.svg" 
+                     alt="Learning illustration" 
+                     class="img-fluid" 
+                     style="max-height: 400px;">
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Featured Tutors -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Featured Tutors</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for tutor in featured_tutors %}
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="https://ui-avatars.com/api/?name={{tutor.user.username}}&size=150" 
+                                 class="rounded-circle mb-3" 
+                                 alt="{{ tutor.user.username }}">
+                            <h5>{{ tutor.user.username }}</h5>
+                            <p class="text-muted">{{ tutor.subjects }}</p>
+                            <p class="card-text">{{ tutor.bio|truncatechars:80 }}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-grid">
+                            <a href="{% url 'tutor_detail' tutor.user.username %}" class="btn btn-outline-primary w-100">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col">
+                <div class="alert alert-info">No featured tutors available.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}

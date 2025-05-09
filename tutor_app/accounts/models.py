@@ -31,6 +31,10 @@ class TutorProfile(models.Model):
 
     def __str__(self):
         return f"Tutor Profile - {self.user.username}"
+    
+    @property
+    def subjects_list(self):
+        return [s.strip() for s in self.subjects.split(',') if s.strip()]
 
 @receiver(post_save, sender=CustomUser)
 def create_user_profile(sender, instance, created, **kwargs):

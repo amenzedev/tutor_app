@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Find Your Tutor</h1>
+    
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" 
+                           name="q" placeholder="Search tutors..." 
+                           value="{{ search_query }}">
+                    <input type="text" class="form-control" 
+                           name="subject" placeholder="Filter by subject" 
+                           value="{{ subject_filter }}">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tutor Grid -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for tutor in tutors %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <img src="https://ui-avatars.com/api/?name={{tutor.user.username}}&size=150" 
+                             class="rounded-circle" 
+                             alt="{{ tutor.user.username }}">
+                    </div>
+                    <h5 class="card-title">{{ tutor.user.username }}</h5>
+                    <p class="text-muted">${{ tutor.hourly_rate }}/hour</p>
+                    <p class="card-text">{{ tutor.bio|truncatechars:100 }}</p>
+                    <div class="badge bg-primary">{{ tutor.subjects }}</div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="#" class="btn btn-outline-primary w-100">View Profile</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <div class="alert alert-info">No tutors found matching your criteria.</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

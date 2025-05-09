@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from accounts.views import register, user_login, user_logout, student_profile, tutor_profile
 from home.views import home_view
+from tutors.views import TutorListView, TutorDetailView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +27,9 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
-    
+    path('tutors/', TutorListView, name='tutor_list'),
+    path('tutors/<str:username>/', TutorDetailView, name='tutor_detail'),
     path('profile/student/', student_profile, name='student_profile'),
     path('profile/tutor/', tutor_profile, name='tutor_profile'),
+    path('<path:anything>', home_view, name='home'),
 ]

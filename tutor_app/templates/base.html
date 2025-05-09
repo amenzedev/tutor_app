@@ -22,6 +22,7 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">Tutor App</a>
             <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'tutor_list' %}">Browse Tutors</a>
                 {% if user.is_authenticated %}
                     {% if request.user.user_type == "student" %}
                         <a class="nav-link" href="{% url 'student_profile' %}">{{ request.user.username }}</a>

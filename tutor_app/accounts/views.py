@@ -71,31 +71,3 @@ def tutor_profile(request):
     return render(request, 'accounts/tutor_profile.html', {'form': form})
 
 
-# @login_required
-# def profile_view(request):
-#     user = request.user
-#     profile_instance = None
-#     form_class = None
-    
-#     if user.user_type == 'student':
-#         profile_instance = user.student_profile
-#         form_class = StudentProfileForm
-#     elif user.user_type == 'tutor':
-#         profile_instance = user.tutor_profile
-#         form_class = TutorProfileForm
-#         return redirect('home')
-
-#     if request.method == 'POST':
-#         form = form_class(request.POST, instance=profile_instance)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Profile updated successfully!')
-#             return redirect('profile')
-#     else:
-#         form = form_class(instance=profile_instance)
-
-#     # return render(request, f'accounts/{"student" if request.user.user_type == 'student' else "tutor"}_profile.html', {
-#     #     'form': form,
-#     #     'profile': profile_instance
-#     # })
-#     return redirect('home')
