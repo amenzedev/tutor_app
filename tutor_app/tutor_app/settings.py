@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-g_fo2+d@=6u*v8yo+ofeo74cev#jdv180^ud3tp&(5)#^ah4=&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['zerotoz.store']
 
 
 # Application definition
